@@ -1,28 +1,38 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
-const Login =()=> {
+const Login = () => {
 
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPasword] = useState('');
 
-    signInWithEmailAndPassword()
+    const goTOhomePage = () => {
+        signInWithEmailAndPassword(auth, email, password).then(() => {
+            alert("Log in successfully")
+            navigate("/home")
 
+
+        }).catch((error) => {
+            console.log(error.message)
+
+        })
+    }
 
 
     return (
 
         <div>
-                  <h1>Login Page</h1>
-                  
-                  <input placeholder="enter email" type="text" value={email} onChange={(event)=>setEmail(event.target.value)}></input><br></br>
-                  <input placeholder="enter password" type="text" value={password} onChange={(event)=>setPasword(event.target.value)}></input><br></br>
-                  
+            <h1>Login Page</h1>
 
-                  <button>Go to home page</button> <br></br>
-                  
-                  <Link to='/register'>register</Link>
+            <input placeholder="enter email" type="text" value={email} onChange={(event) => setEmail(event.target.value)}></input><br></br>
+            <input placeholder="enter password" type="text" value={password} onChange={(event) => setPasword(event.target.value)}></input><br></br>
+
+
+            <button onClick={goTOhomePage}>Login</button> <br></br>
+
+            <Link to='/register'>register</Link>
 
         </div>
     )
