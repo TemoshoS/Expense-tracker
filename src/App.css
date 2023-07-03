@@ -41,5 +41,33 @@ button{
   height: 30px;
 }
 
+.list-Item{
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  width: 500px;
+  height: 50px;
+  margin-top: 5px;
+}
+
+.list-Item h5 {
+  padding-top: 25px;
+  padding-left: 12px;
+}
+
+.expenseIndicator{
+  display: block;
+  border-right: 4px solid red;
+  width: 100px;
+  height: 47px;
+}
+
+
+.incomeIndicator{
+  display: block;
+  border-right: 4px solid green;
+  width: 100px;
+  height: 47px;
+}
 
 

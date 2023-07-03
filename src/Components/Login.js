@@ -8,7 +8,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPasword] = useState('');
 
-    const goTOhomePage = () => {
+    const goTohomePage = () => {
         signInWithEmailAndPassword(auth, email, password).then(() => {
             alert("Log in successfully")
             navigate("/home")
@@ -30,9 +30,10 @@ const Login = () => {
             <input placeholder="enter password" type="text" value={password} onChange={(event) => setPasword(event.target.value)}></input><br></br>
 
 
-            <button onClick={goTOhomePage}>Login</button> <br></br>
+            <button onClick={goTohomePage}>Login</button> <br></br>
 
-            <Link to='/register'>register</Link>
+            <Link to='/forgotpassword'>Forgot Password</Link><br/>
+            <Link to='/register'>Don't have an account : Sign Up</Link>
 
         </div>
     )
