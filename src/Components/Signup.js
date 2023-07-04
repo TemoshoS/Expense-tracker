@@ -3,22 +3,18 @@ import {Link} from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import {auth} from '../config/firebase'
 
+import {  useSelector, useDispatch } from 'react-redux'
+import { signUp } from '../authReducer/auth'
+
+
 
 const Signup=()=>{
-const [email, setEmail] = useState('')
-const [pasword, setPasword] = useState('')
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+
+const dispatch = useDispatch();
 
 
-const register=()=>{
-
-    createUserWithEmailAndPassword(auth, email, pasword).then(()=>{
-       alert('success')
-    }).catch((error)=>{
-        alert('please enter atleast 7 digits')
-        console.log(error.message);
-    })
-
-}
 
 
     return (
@@ -26,12 +22,12 @@ const register=()=>{
             <h1 style={{textAlign:'center'}}>Signup</h1>
 
             <label>Username</label> <br/>
-            <input type="text"  value={email} onChange={(event)=>setEmail(event.target.value)}/><br/>
+            <input type="text"  onChange={(event)=>setEmail(event.target.value)}/><br/>
             
             <label>Password</label> <br/>
-            <input type='text' value={pasword} onChange={(event)=>setPasword(event.target.value)}></input> <br/>
+            <input type='text'  onChange={(event)=>setPassword(event.target.value)}></input> <br/>
             
-             <button onClick={register}>Submit</button>
+             <button onClick={()=> dispatch(signUp(email, password))}>Submit</button>
            <p> already registered? <Link to='/'>login</Link></p>
 
 
