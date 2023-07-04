@@ -10,6 +10,7 @@ import NoPageFound from './Components/noPageFound';
 import ResetPassword from './Components/forgotPassword';
 import { getDocs, collection, addDoc } from 'firebase/firestore'
 import { db } from './config/firebase';
+import CurrencyConvert from './Components/currency';
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
           <Route path='/home' element={<Home add={add} transactions={transactions} />} />
           <Route path='/forgotpassword' element={<ResetPassword />} />
           <Route path='*' element={<NoPageFound />} />
+          <Route path='/currencyconverter' element={<CurrencyConvert/>} />
         </Routes>
 
       </BrowserRouter>
