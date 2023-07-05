@@ -1,18 +1,20 @@
 import { useState } from "react"
 import { auth } from "../config/firebase"
 import { sendPasswordResetEmail } from "firebase/auth"
+import { useDispatch } from "react-redux"
+import { passwordReset } from "../authReducer/auth"
+
 const ResetPassword = () => {
+
+    const dispatch = useDispatch();
+    const [email, setPasword] = useState('')
+
     const forgotPassword = (() => {
-        sendPasswordResetEmail(auth, email).then(() => {
-
-            alert('check your email')
-        }).catch((error) => {
-
-        })
+        dispatch(passwordReset(email))
 
     })
 
-    const [email, setPasword] = useState('')
+
 
     return (
         <div>
