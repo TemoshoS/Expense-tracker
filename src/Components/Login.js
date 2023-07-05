@@ -2,23 +2,17 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
+import {useDispatch} from 'react-redux'
+import { signIn } from "../authReducer/auth";
+
 const Login = () => {
 
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPasword] = useState('');
 
-    const goTohomePage = () => {
-        signInWithEmailAndPassword(auth, email, password).then(() => {
-            alert("Log in successfully")
-            navigate("/home")
-
-
-        }).catch((error) => {
-            console.log(error.message)
-
-        })
-    }
+    const dispatch = useDispatch();
+    
 
 
     return (
@@ -30,7 +24,7 @@ const Login = () => {
             <input placeholder="enter password" type="text" value={password} onChange={(event) => setPasword(event.target.value)}></input><br></br>
 
 
-            <button onClick={goTohomePage}>Login</button> <br></br>
+            <button onClick={()=>dispatch(signIn(email, password))}>Login</button> <br></br>
 
             <Link to='/forgotpassword'>Forgot Password</Link><br/>
             <Link to='/register'>Don't have an account : Sign Up</Link>
