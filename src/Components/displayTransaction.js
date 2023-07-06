@@ -1,4 +1,17 @@
+import { useEffect } from "react";
+import { useSelector,useDispatch} from "react-redux";
+import { fetchData } from "../firestoreReducers/data";
+
 const DisplayTransaction=(props)=>{
+ const dispatch =useDispatch();
+ const {loading, error, data}= useSelector((state)=>state.data);
+
+
+ useEffect(()=>{
+
+    dispatch(fetchData());
+
+ }, [])
 
 
     return(<div>
@@ -6,7 +19,7 @@ const DisplayTransaction=(props)=>{
        <h4>History of your transaction</h4>
 
       
-       {props.transactions.map((data)=>(
+       {data.map((data)=>(
          <div className="list-Item">
         <div >
             <h5>{data.transactionItem}</h5>
