@@ -12,38 +12,59 @@ const dataSlice = createSlice({
     name: "data",
     initialState,
     reducers: {
+
+        addData: (state, action) => {
+            state.data.push(action.payload);
+
+        },
         fetchDataStart(state) {
             state.loading = true;
             state.error = null;
         },
 
-        fetchDataSuccess(state,action) {
+        fetchDataSuccess(state, action) {
             state.loading = false;
             state.data = action.payload;
 
         },
 
-        fetchDataFailure(state,action) {
+        fetchDataFailure(state, action) {
             state.loading = false;
-            state.error = action.payload
+            state.error = action.payload;
 
         }
     }
-})
+});
 
-export const { fetchDataStart, fetchDataSuccess, fetchDataFailure } = dataSlice.actions;
+export const { fetchDataStart, fetchDataSuccess, fetchDataFailure, addData } = dataSlice.actions;
 export const fetchData = () => async (dispatch) => {
-    dispatch(fetchDataStart())
+    dispatch(fetchDataStart());
+
     try {
         const querySnapShot = await getDocs(collection(db, "transactions"));
         const data = querySnapShot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data()
-        }))
+        }));
+
+        dispatch(fetchDataSuccess(data));
 
     } catch (error) {
 
         dispatch(fetchDataFailure(error))
+
+    }
+};
+
+export const addTranscation = (data) => async (dispatch) => {
+
+
+
+    try {
+        const docRef = await addDoc(collection(db, "transacetions"), data);
+        dispatch(addData(data));
+        alert("added successfully")
+    } catch (error) {
 
     }
 }

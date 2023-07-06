@@ -14,7 +14,8 @@ const DisplayTransaction=(props)=>{
  }, [])
 
 
-    return(<div>
+    return(
+    <div style={{marginTop:"35px"}}>
 
        <h4>History of your transaction</h4>
 
