@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { collection, addDoc, getDocs } from 'firebase/firestore'
+import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../config/firebase'
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const initialState = {
     loading: false,
@@ -32,11 +33,19 @@ const dataSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
 
+        },
+        deleteData:(state, action)=>{
+
+            const index = state.data.findIndex((item)=>item.id===action.payload);
+            if(index !== -1){
+
+                state.data.splice(index, 1)
+            }
         }
     }
 });
 
-export const { fetchDataStart, fetchDataSuccess, fetchDataFailure, addData } = dataSlice.actions;
+export const { fetchDataStart, fetchDataSuccess, fetchDataFailure, addData, deleteData } = dataSlice.actions;
 export const fetchData = () => async (dispatch) => {
     dispatch(fetchDataStart());
 
@@ -66,6 +75,18 @@ export const addTranscation = (data) => async (dispatch) => {
         alert("added successfully")
     } catch (error) {
 
+    }
+}
+
+export const deleteTransaction =(id)=> async(dispatch)=>{
+    try {
+
+        await deleteDoc(doc(db, "transactions", id));
+        dispatch(deleteData(id))
+        alert("Deleted successfully")
+        
+    } catch (error) {
+        
     }
 }
 
