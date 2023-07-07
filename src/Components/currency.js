@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 const url = "https://api.exchangerate.host/latest"
 
 const CurrencyConvert = () => {
@@ -56,9 +57,40 @@ const CurrencyConvert = () => {
    })
 
     return (
-        <div className="App">
+        <div className="Container">
+            <div className="mt-5">
+          <ul className="nav nav-tabs">
+
+            <li className="nav-item" role="presentation">
+              <Link
+                to="/home"
+                className="nav-link active"
+                id="home-tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="false"
+              >
+                Expense tracker
+              </Link>
+            </li>
+            <li className="nav-item" role="presentation">
+              <Link
+                to="/currencyconverter"
+                className="nav-link"
+                id="CurrencyConvert-tab"
+                role="tab"
+                aria-controls="CurrencyConvert"
+                aria-selected="false"
+              >
+                Currency Converter
+              </Link>
+            </li>
+
+          </ul>
+        </div>
+
             <div>
-                <h4>Currency Converter</h4>
+                <h4 style={{paddingTop:'25px'}}>Currency Converter</h4>
 
                 <div className="showCurrency">
                     <h3>{showCurrency}</h3>
@@ -81,7 +113,7 @@ const CurrencyConvert = () => {
                     
                 </select>{" "}
                 <br /> <br />
-                <button onClick={currencyConversion}>Converter</button>
+                <button onClick={currencyConversion} className='addBtn'>Converter</button>
             </div>
 
         </div>

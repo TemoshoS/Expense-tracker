@@ -17,7 +17,7 @@ const dataSlice = createSlice({
             state.data.push(action.payload);
 
         },
-        fetchDataStart(state) {
+        fetchDataStart(state,action) {
             state.loading = true;
             state.error = null;
         },

@@ -25,7 +25,7 @@ const AddTransaction = (props) => {
 
    return (<div>
 
-      <h1>Add a new transaction </h1>
+      <h5 style={{paddingTop:"25px"}}>Add a new transaction </h5>
 
       <input type='text' placeholder='Enter item' onChange={(event) => setTransactionItem(event.target.value)}></input> <br />
       <input type='text' placeholder='Enter amount' onChange={(event) => setAmount(event.target.value)}></input> <br />
@@ -35,7 +35,7 @@ const AddTransaction = (props) => {
          <option>Expense</option>
       </select> <br />
 
-      <button onClick={add}>Add a transaction</button>
+      <button onClick={add} className='addBtn'>Add a transaction</button>
 
    </div>
    );

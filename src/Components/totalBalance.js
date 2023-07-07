@@ -44,10 +44,11 @@ console.log(totalExpense)
     return (
         <div className='mt-3'>
             <h3>Total Balance</h3>
+            <h4>R {totalIncome - totalExpense}</h4>
             <div className='totalBalance'>
                 <div>
                     <h4>Income</h4>
-                    <h6>{totalIncome}</h6>
+                    <h6 style={{color:'green'}}>R {totalIncome}</h6>
 
                 </div>
 
@@ -55,7 +56,7 @@ console.log(totalExpense)
                 <div className='totalBalanceLine'></div>
                 <div>
                     <h4>Expense</h4>
-                    <h6>{totalExpense}</h6>
+                    <h6 style={{color:'red'}}>R {totalExpense}</h6>
 
                 </div>
 
